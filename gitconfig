@@ -1,0 +1,13 @@
+[user]
+    name = Austin Selick-Bottos
+    email = segfault24@users.noreply.github.com
+[init]
+    init.defaultbranch = main
+[push]
+    autoSetupRemote = true
+[core]
+    editor = nano
+#    autocrlf = true  # windows
+#    autocrlf = input # linux
+[color]
+    ui = auto
