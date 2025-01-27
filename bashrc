@@ -146,10 +146,10 @@ update-bashrc() {
   fi
   echo "Downloading kubectx"
   curl -sSf https://raw.githubusercontent.com/ahmetb/kubectx/refs/heads/master/kubectx -o ~/bin/kubectx
-  chmod 550 ~/bin/kubectx
+  chmod 750 ~/bin/kubectx
   echo "Downloading kubens"
   curl -sSf https://raw.githubusercontent.com/ahmetb/kubectx/refs/heads/master/kubens -o ~/bin/kubens
-  chmod 550 ~/bin/kubens
+  chmod 750 ~/bin/kubens
   echo "Downloading kubectx-completion.bash.inc"
   curl -sSf https://raw.githubusercontent.com/ahmetb/kubectx/refs/heads/master/completion/kubectx.bash -o ~/.kube/kubectx-completion.bash.inc
   echo "Downloading kubens-completion.bash.inc"
