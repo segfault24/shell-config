@@ -73,8 +73,8 @@ if [[ -r ~/.git-completion.bash ]]; then
   __git_complete grso _git_remote
 fi
 git-sync() {
-  branch="$(basename "$(git symbolic-ref HEAD)")"
-  branches=$(git remote show origin -n | grep "merges with" | tr -s ' ' | cut -f ' ' -f2)
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  branches=$(git remote show origin -n | grep "merges with" | tr -s ' ' | cut -d' ' -f2)
   cd "$(git rev-parse --show-toplevel)" || return
   git remote update --prune
   git stash push
@@ -86,7 +86,7 @@ git-sync() {
   git stash pop
 }
 git-fire() {
-  branch="$(basename "$(git symbolic-ref HEAD)")"
+  branch=$(git rev-parse --abbrev-ref HEAD)
   fire_branch="fire-${branch}-$(git config user.email)-$(date +%s)"
   git checkout -b "${fire_branch}"
   cd "$(git rev-parse --show-toplevel)" || exit 1
