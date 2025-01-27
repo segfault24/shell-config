@@ -62,19 +62,6 @@ alias gd='git diff'
 alias gds='git diff --stat'
 alias gc='git checkout'
 alias grso='git remote show origin'
-git-sync() {
-  # TODO
-  echo "unimplemented"
-}
-git-fire() {
-  branch="$(basename "$(git symbolic-ref HEAD)")"
-  fire_branch="fire-${branch}-$(git config user.email)-$(date +%s)"
-  git checkout -b "${fire_branch}"
-  cd "$(git rev-parse --show-toplevel)" || exit 1
-  git add -A
-  git commit -m "Fire! ${fire_branch}" --no-verify
-  git push --no-verify --set-upstream origin "${fire_branch}"
-}
 if [[ -r ~/.git-completion.bash ]]; then
   source ~/.git-completion.bash
   __git_complete ga _git_add
@@ -85,11 +72,31 @@ if [[ -r ~/.git-completion.bash ]]; then
   __git_complete gc _git_checkout
   __git_complete grso _git_remote
 fi
+git-sync() {
+  branch="$(basename "$(git symbolic-ref HEAD)")"
+  branches=$(git remote show origin -n | grep "merges with" | tr -s ' ' | cut -f ' ' -f2)
+  cd "$(git rev-parse --show-toplevel)" || return
+  git remote update --prune
+  git stash push
+  for b in $branches; do
+    git checkout "$b"
+    git pull
+  done
+  git checkout "$branch"
+  git stash pop
+}
+git-fire() {
+  branch="$(basename "$(git symbolic-ref HEAD)")"
+  fire_branch="fire-${branch}-$(git config user.email)-$(date +%s)"
+  git checkout -b "${fire_branch}"
+  cd "$(git rev-parse --show-toplevel)" || exit 1
+  git add -A
+  git commit -m "Fire! ${fire_branch}" --no-verify
+  git push --no-verify --set-upstream origin "${fire_branch}"
+}
 export GIT_PS1_SHOWDIRTYSTATE=1
 # set __git_ps1 in case we don't have git stuff yet
-__git_ps1() {
-  echo -n ""
-}
+__git_ps1() { echo -n ""; }
 [[ -r ~/.git-prompt.sh ]] && source ~/.git-prompt.sh
 
 # Kubernetes
