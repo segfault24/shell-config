@@ -164,7 +164,7 @@ if [[ "$EUID" -gt 0 ]]; then
   PS1='\[\e[32m\]\h\[\e[95m\]$(__kube_ps1)\[\e[0m\]\[\e[38;5;39m\]$(__git_ps1 " %s")\[\e[0m\] \[\e[33m\]\w\[\e[0m\] \$ '
 else
   # root
-  PS1='\[\e[38;5;160m\]\h\[\e[95m\]$(__kube_ps1)\[\e[0m\]\[\e[38;5;39m\]$(__git_ps1 " %s")\[\e[0m\] \[\e[33m\]\w\[\e[0m\] \* '
+  PS1='\[\e[38;5;160m\]\h\[\e[95m\]$(__kube_ps1)\[\e[0m\]\[\e[38;5;39m\]$(__git_ps1 " %s")\[\e[0m\] \[\e[33m\]\w\[\e[0m\] # '
 fi
 
 export PATH="$PATH:$HOME/bin"
