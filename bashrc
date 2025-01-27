@@ -16,14 +16,14 @@ update-shell-config() {
   [[ ! -f ~/.bashrc_local ]] && touch ~/.bashrc_local
 
   echo "Downloading bashrc"
-  curl -sSf https://raw.githubusercontent.com/segfault24/shell-config/refs/heads/main/bashrc -o ~/.bashrc
+  curl -sSf -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/segfault24/shell-config/refs/heads/main/bashrc -o ~/.bashrc
   echo "Downloading nanorc"
-  curl -sSf https://raw.githubusercontent.com/segfault24/shell-config/refs/heads/main/nanorc -o ~/.nanorc
+  curl -sSf -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/segfault24/shell-config/refs/heads/main/nanorc -o ~/.nanorc
   echo "Downloading toprc"
-  curl -sSf https://raw.githubusercontent.com/segfault24/shell-config/refs/heads/main/toprc -o ~/.toprc
+  curl -sSf -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/segfault24/shell-config/refs/heads/main/toprc -o ~/.toprc
   if [[ "$(uname)" == "MINGW"* ]]; then
     echo "Downloading minttyrc"
-    curl -sSf https://raw.githubusercontent.com/segfault24/shell-config/refs/heads/main/minttyrc -o ~/.minttyrc
+    curl -sSf -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/segfault24/shell-config/refs/heads/main/minttyrc -o ~/.minttyrc
   fi
   if [[ "$(uname)" == "Linux" ]]; then
     echo "Downloading complete_alias.sh"
