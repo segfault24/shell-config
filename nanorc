@@ -38,3 +38,4 @@ set tabsize 4
 set stateflags
 set guidestripe 81
 set nonewlines
+set linenumbers
