@@ -1,13 +1,29 @@
 [user]
     name = Austin Selick-Bottos
     email = segfault24@users.noreply.github.com
-[init]
-    init.defaultbranch = main
-[push]
-    autoSetupRemote = true
 [core]
     editor = nano
 #    autocrlf = true  # windows
 #    autocrlf = input # linux
+[init]
+    defaultBranch = main
+[branch]
+    sort = -committerdate
+[tag]
+    sort = version:refname
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+[push]
+    autoSetupRemote = true
+    followTags = true
 [color]
     ui = auto
+[column]
+    ui = auto
+[diff]
+    colorMoved = plain
+    algorithm = histogram
+[help]
+    autoCorrect = prompt
